@@ -5,7 +5,7 @@ from matplotlib.patches import Polygon
 def lattice_point(i, j, side):
     """
     Return coordinates (x,y) of the lattice point P(i,j).
-    i, j are integer indices on a triangular lattice.
+    i, j (up,right)are integer indices on a triangular lattice.
     side is the side length of each small triangle.
     """
     h = math.sqrt(3) / 2 * side  # height of a small equilateral triangle
@@ -50,25 +50,19 @@ def build_and_draw_pyramid(side=1.0, depth=4, color_upright="tab:blue", color_in
             C = lattice_point(i + 1, j, side)
             triangles.append(([A, B, C], color_inverted))
 
-    # Center the big triangle horizontally at x = 0
-    x_shift = (depth * side) / 2.0
-    shifted_triangles = []
-    for verts, col in triangles:
-        shifted = [ (x - x_shift, y) for (x,y) in verts ]
-        shifted_triangles.append((shifted, col))
 
     # Draw
     fig_w = max(6, depth * 0.8)
     fig_h = max(6, depth * 0.8)
     fig, ax = plt.subplots(figsize=(fig_w, fig_h))
 
-    for verts, col in shifted_triangles:
+    for verts, col in triangles:
         poly = Polygon(verts, closed=True, edgecolor="black", linewidth=0.7, facecolor=col)
         ax.add_patch(poly)
 
     ax.set_aspect('equal')
     padding = side * 0.2
-    ax.set_xlim(-x_shift - padding, x_shift + padding)
+    ax.set_xlim(-padding, depth * side + padding)
     ax.set_ylim(-padding, depth * h + padding)
     ax.axis('off')
 

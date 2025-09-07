@@ -74,7 +74,7 @@ for i in range(n):
     norm = np.linalg.norm(v1) * np.linalg.norm(v2)  # |v1||v2|
     cos_theta = dot / norm
     cos_theta = np.clip(cos_theta, -1.0, 1.0)       # avoid rounding issues
-    theta = np.degrees(np.arccos(cos_theta))        # convert to degrees
+    theta = np.degrees(np.arccos(cos_theta))        # convert to degrees radiens --> degrees 
     
     angles.append(theta)
 
@@ -112,7 +112,7 @@ plt.fill(vertices[:,0], vertices[:,1], alpha=0.3, color="lightblue", edgecolor="
 # Mark and label vertices
 for i, (x, y) in enumerate(vertices):
     plt.plot(x, y, "bo")                      # blue dots for vertices
-    plt.text(x+0.1, y+0.1, f"V{i+1}", fontsize=10)  # label V1, V2, ...
+    plt.text(x+0.1, y+0.1, f"V{i+1}", fontsize=10)  # label V1, V2, ..., shifts the label slightly so it doesn’t overlap the dot.
 
 # Mark centroid
 plt.plot(centroid_simple[0], centroid_simple[1], "ro", label="Centroid")

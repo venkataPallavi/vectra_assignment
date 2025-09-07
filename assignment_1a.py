@@ -15,7 +15,7 @@ df = pd.read_excel(input_file, sheet_name="Student Marks")
 # Step 2: Vectorized Computations (no loops)
 # ------------------------------
 # Calculate total marks across subjects for each student
-df["Total"] = df[["Math", "Physics", "Chemistry", "Biology"]].sum(axis=1)
+df["Total"] = df[["Math", "Physics", "Chemistry", "Biology"]].sum(axis=1) 
 
 # Calculate average marks for each student
 df["Average"] = df[["Math", "Physics", "Chemistry", "Biology"]].mean(axis=1)
@@ -32,7 +32,7 @@ grades = ["A", "B", "C", "F"]
 df["Grade"] = np.select(conditions, grades)
 
 
-# Step 3: Find Top Performers per subject (direct to DataFrame)
+# Step 3: Find Top Performers per subject
 
 subjects = ["Math", "Physics", "Chemistry", "Biology"]
 
